@@ -93,7 +93,7 @@
                 <!--Nacos配置中心地址-->
                 <config.server-addr>127.0.0.1:8848</config.server-addr>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
-                <config.namespace>4d894170-27bd-4a9c-90dc-fbf32fea348a</config.namespace>
+                <config.namespace>f4f6d7c7-58b0-41c7-a067-e54023b8554f</config.namespace>
                 <!--Nacos配置中心分组,用于支持多环境.默认为DEFAULT_GROUP-->
                 <config.group>DEFAULT_GROUP</config.group>
                 <!--Nacos服务发现地址-->

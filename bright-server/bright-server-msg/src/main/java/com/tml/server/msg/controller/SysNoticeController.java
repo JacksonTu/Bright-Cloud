@@ -201,11 +201,33 @@ public class SysNoticeController {
                     ns.setNoticeId(notice.getId());
                     ns.setUserId(userId);
                     ns.setReadFlag(BrightConstant.NO_READ_FLAG);
+                    ns.setCreateTime(new Date());
+                    ns.setCreateUser(BrightUtil.getCurrentUser().getUsername());
+                    ns.setUpdateTime(new Date());
+                    ns.setUpdateUser(BrightUtil.getCurrentUser().getUsername());
                     this.sysNoticeSendService.save(ns);
                 }
             });
         }
-        // 2.查询用户未读的系统消息
+        // 2.将用户消息补充到用户通告阅读标记表中
+        List<SysNotice> userNotices=this.sysNoticeService.listByCondition(BrightConstant.MSG_TYPE_USER,BrightConstant.HAS_SEND,BrightUtil.getCurrentUser().getCreateTime(),noticeIds);
+        if(userNotices!=null && userNotices.size()>0){
+            userNotices.forEach(notice ->{
+                SysNoticeSend noticeSend= this.sysNoticeSendService.findByNoticeIdAndUserId(notice.getId(),userId);
+                if(noticeSend==null && notice.getUserIds().contains(userId.toString())){
+                    SysNoticeSend ns = new SysNoticeSend();
+                    ns.setNoticeId(notice.getId());
+                    ns.setUserId(userId);
+                    ns.setReadFlag(BrightConstant.NO_READ_FLAG);
+                    ns.setCreateTime(new Date());
+                    ns.setCreateUser(BrightUtil.getCurrentUser().getUsername());
+                    ns.setUpdateTime(new Date());
+                    ns.setUpdateUser(BrightUtil.getCurrentUser().getUsername());
+                    this.sysNoticeSendService.save(ns);
+                }
+            });
+        }
+        // 3.查询用户未读的系统消息
         QueryRequest queryRequest=new QueryRequest();
         queryRequest.setPageSize(5);
         //通知公告消息
