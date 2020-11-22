@@ -32,13 +32,13 @@
         <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
         <spring-boot-admin.version>2.3.0</spring-boot-admin.version>
         <spring-cloud-alibaba.version>2.2.3.RELEASE</spring-cloud-alibaba.version>
-        <alibaba.fastjson.version>1.2.74</alibaba.fastjson.version>
+        <alibaba.fastjson.version>1.2.75</alibaba.fastjson.version>
         <commons.io.version>2.6</commons.io.version>
         <commons.fileupload.version>1.4</commons.fileupload.version>
         <commons.collections4.version>4.4</commons.collections4.version>
         <commons.text.version>1.8</commons.text.version>
         <guava.version>29.0-jre</guava.version>
-        <hutool.version>5.4.0</hutool.version>
+        <hutool.version>5.5.1</hutool.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
         <google.zxing.version>3.4.0</google.zxing.version>
         <dozer.version>6.5.0</dozer.version>
@@ -93,7 +93,7 @@
                 <!--Nacos配置中心地址-->
                 <config.server-addr>127.0.0.1:8848</config.server-addr>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
-                <config.namespace>f4f6d7c7-58b0-41c7-a067-e54023b8554f</config.namespace>
+                <config.namespace></config.namespace>
                 <!--Nacos配置中心分组,用于支持多环境.默认为DEFAULT_GROUP-->
                 <config.group>DEFAULT_GROUP</config.group>
                 <!--Nacos服务发现地址-->
@@ -109,7 +109,7 @@
                 <!--Nacos配置中心地址-->
                 <config.server-addr>127.0.0.1:8848</config.server-addr>
                 <!--Nacos配置中心命名空间,用于支持多环境.这里必须使用ID，不能使用名称,默认为空-->
-                <config.namespace>4d894170-27bd-4a9c-90dc-fbf32fea348a</config.namespace>
+                <config.namespace></config.namespace>
                 <!--Nacos配置中心分组,用于支持多环境.默认为DEFAULT_GROUP-->
                 <config.group>DEFAULT_GROUP</config.group>
                 <!--Nacos服务发现地址-->

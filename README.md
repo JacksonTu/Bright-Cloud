@@ -104,7 +104,7 @@ Skywalking|11800、12800、9080|Skywalking APM
 
 ### 目录结构
 ```
-├─bright-common                       ------ 通过模块
+├─bright-common                       ------ 公共模块
 │  ├─bright-common-core                         ------ 系统核心依赖包
 │  ├─bright-common-starter-datasource           ------ 系统数据库自动装配starter
 │  ├─bright-common-starter-log                  ------ 系统日志自动装配starter
@@ -141,9 +141,6 @@ clean package -P prod -D maven.test.skip=true -f pom.xml
 测试环境环境
 clean package -P test -D maven.test.skip=true -f pom.xml
 ```
-
-
-
 
 ### 系统截图
 
