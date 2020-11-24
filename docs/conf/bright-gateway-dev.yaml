@@ -20,7 +20,7 @@ spring:
             allowedHeaders: "*"
             allowCredentials: true
 #      routes:
-#        - id: bright-auth-Social
+#        - id: bright-auth-social
 #          uri: lb://bright-auth
 #          predicates:
 #            - Path=/auth/social/**

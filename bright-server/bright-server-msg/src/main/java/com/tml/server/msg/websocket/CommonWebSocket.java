@@ -21,9 +21,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @description 公用websocket工具类
  * @since 2020/10/15 16:53
  */
-@Component
 @Slf4j
-@ServerEndpoint("/websocket/{userId}") //此注解相当于设置访问URL
+@Component
+@ServerEndpoint("/websocket/{userId}")
 public class CommonWebSocket {
 
     private Session session;
