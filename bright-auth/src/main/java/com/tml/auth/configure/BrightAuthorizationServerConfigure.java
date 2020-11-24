@@ -1,7 +1,5 @@
 package com.tml.auth.configure;
 
-import com.tml.auth.converter.BrightJwtAccessTokenConverter;
-import com.tml.auth.converter.BrightUserAuthenticationConverter;
 import com.tml.auth.converter.BrightJwtTokenService;
 import com.tml.auth.converter.BrightRedisTokenService;
 import com.tml.auth.handler.BrightWebResponseExceptionTranslator;

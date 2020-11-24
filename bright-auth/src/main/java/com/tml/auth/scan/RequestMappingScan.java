@@ -49,11 +49,7 @@ import java.util.concurrent.*;
 @Component
 public class RequestMappingScan implements ApplicationListener<ApplicationReadyEvent> {
 
-    @Resource
-    private Processor pipe;
-
     private static final AntPathMatcher pathMatch = new AntPathMatcher();
-
     private final ExecutorService threadPool = new ThreadPoolExecutor(
             Runtime.getRuntime().availableProcessors(),
             new Double(Runtime.getRuntime().availableProcessors() / (1 - 0.9)).intValue(),
@@ -63,8 +59,8 @@ public class RequestMappingScan implements ApplicationListener<ApplicationReadyE
             Executors.defaultThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy()
     );
-
-
+    @Resource
+    private Processor pipe;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -169,7 +165,7 @@ public class RequestMappingScan implements ApplicationListener<ApplicationReadyE
         resource.put("application", serviceId);
         resource.put("mapping", list);
         log.info("ApplicationReadyEvent:[{}]", serviceId);
-        threadPool.submit(() ->{
+        threadPool.submit(() -> {
             pipe.output().send(MessageBuilder.withPayload(JacksonUtil.toJson(resource)).build());
 
         });

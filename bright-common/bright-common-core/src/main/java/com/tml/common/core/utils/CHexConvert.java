@@ -2,6 +2,7 @@ package com.tml.common.core.utils;
 
 
 import org.apache.commons.lang3.StringUtils;
+
 import java.util.Locale;
 
 /**
@@ -21,7 +22,7 @@ public class CHexConvert {
      * @return boolean
      */
     public static boolean checkHexStr(String sHex) {
-        String sTmp = sHex.toString().trim().replace(" ", "").toUpperCase(Locale.US);
+        String sTmp = sHex.trim().replace(" ", "").toUpperCase(Locale.US);
         int iLen = sTmp.length();
 
         if (iLen > 1 && iLen % 2 == 0) {
@@ -58,11 +59,10 @@ public class CHexConvert {
      * @return String 对应的字符串
      */
     public static String hexStr2Str(String hexStr) {
-        hexStr = hexStr.toString().trim().replace(" ", "").toUpperCase(Locale.US);
+        hexStr = hexStr.trim().replace(" ", "").toUpperCase(Locale.US);
         char[] hexs = hexStr.toCharArray();
         byte[] bytes = new byte[hexStr.length() / 2];
         int iTmp = 0x00;
-        ;
 
         for (int i = 0; i < bytes.length; i++) {
             iTmp = mHexStr.indexOf(hexs[2 * i]) << 4;
@@ -172,7 +172,7 @@ public class CHexConvert {
         String strHex;
         for (int i = 0; i < strText.length(); i++) {
             c = strText.charAt(i);
-            intAsc = (int) c;
+            intAsc = c;
             strHex = Integer.toHexString(intAsc);
             if (intAsc > 128)
                 str.append("\\u");

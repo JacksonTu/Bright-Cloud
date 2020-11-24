@@ -23,10 +23,10 @@ import java.util.Set;
 @Slf4j
 @Component
 public class AccessManager implements ReactiveAuthorizationManager<AuthorizationContext> {
-    private Set<String> permitAll = new ConcurrentHashSet<>();
     private static final AntPathMatcher antPathMatcher = new AntPathMatcher();
+    private final Set<String> permitAll = new ConcurrentHashSet<>();
 
-    public AccessManager (){
+    public AccessManager() {
         permitAll.add("/");
         permitAll.add("/error");
         permitAll.add("/favicon.ico");
@@ -59,6 +59,7 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
 
     /**
      * 校验是否属于静态资源
+     *
      * @param requestPath 请求路径
      * @return
      */
@@ -69,14 +70,14 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
 
     //权限校验
     private boolean checkAuthorities(ServerWebExchange exchange, Authentication auth, String requestPath) {
-        if(auth instanceof OAuth2Authentication){
+        if (auth instanceof OAuth2Authentication) {
             OAuth2Authentication authentication = (OAuth2Authentication) auth;
             String clientId = authentication.getOAuth2Request().getClientId();
-            log.info("clientId is: {}",clientId);
+            log.info("clientId is: {}", clientId);
         }
 
         Object principal = auth.getPrincipal();
-        log.info("user info is: {}",principal.toString());
+        log.info("user info is: {}", principal.toString());
         return true;
     }
 }

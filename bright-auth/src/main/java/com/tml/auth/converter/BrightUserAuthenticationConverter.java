@@ -32,7 +32,7 @@ public class BrightUserAuthenticationConverter extends DefaultUserAuthentication
      * @return
      */
     private Object converter(Map<String, ?> map) {
-        BrightAuthUser auth = JacksonUtil.toObject(map.get(USERNAME).toString(),BrightAuthUser.class);
+        BrightAuthUser auth = JacksonUtil.toObject(map.get(USERNAME).toString(), BrightAuthUser.class);
         if (map.containsKey(SecurityConstant.USER_ID)) {
             auth.setUserId(Long.valueOf(map.get(SecurityConstant.USER_ID).toString()));
         }

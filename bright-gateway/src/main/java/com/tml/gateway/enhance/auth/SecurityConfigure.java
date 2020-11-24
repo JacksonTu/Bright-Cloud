@@ -79,6 +79,8 @@ public class SecurityConfigure {
                 .csrf().disable()
                 .formLogin().disable()
                 .authorizeExchange()
+                // websocket放行
+                .pathMatchers("/ws/websocket/**").permitAll()
                 .pathMatchers(HttpMethod.OPTIONS).permitAll()
                 .anyExchange().access(accessManager)
                 .and()

@@ -8,25 +8,6 @@ package com.tml.common.core.utils;
  */
 public class CRC16 {
 
-    public String coCRC16(String Str) {
-        long lon = GetModBusCRC(Str.replace(" ", ""));
-        int h1, l0;
-        l0 = (int) lon / 256;
-        h1 = (int) lon % 256;
-        String s = "";
-        if (Integer.toHexString(h1).length() < 2) {
-            s = "0" + Integer.toHexString(h1);
-        } else {
-            s = Integer.toHexString(h1);
-        }
-        if (Integer.toHexString(l0).length() < 2) {
-            s = s + "0" + Integer.toHexString(l0);
-        } else {
-            s = s + Integer.toHexString(l0);
-        }
-        return s;
-    }
-
     private static int[] strToToHexByte(String hexString) {
         hexString = hexString.replace(" ", "");
         if ((hexString.length() % 2) != 0) {
@@ -67,5 +48,24 @@ public class CRC16 {
         CRC16 d = new CRC16();
         String ds = d.coCRC16("03 03 00 00 00 01");
         System.out.println(ds);
+    }
+
+    public String coCRC16(String Str) {
+        long lon = GetModBusCRC(Str.replace(" ", ""));
+        int h1, l0;
+        l0 = (int) lon / 256;
+        h1 = (int) lon % 256;
+        String s = "";
+        if (Integer.toHexString(h1).length() < 2) {
+            s = "0" + Integer.toHexString(h1);
+        } else {
+            s = Integer.toHexString(h1);
+        }
+        if (Integer.toHexString(l0).length() < 2) {
+            s = s + "0" + Integer.toHexString(l0);
+        } else {
+            s = s + Integer.toHexString(l0);
+        }
+        return s;
     }
 }

@@ -45,7 +45,7 @@ public class RedisPubService {
         pushMsg.setCreateTime(new Date());
         ChannelTopic topic = new ChannelTopic(topicName);
 
-        redisTemplate.convertAndSend(topic.getTopic(),toJson(pushMsg));
+        redisTemplate.convertAndSend(topic.getTopic(), toJson(pushMsg));
     }
 
     private <T> String toJson(T t) {

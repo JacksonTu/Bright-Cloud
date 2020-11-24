@@ -58,28 +58,36 @@ public interface BrightConstant {
 
     String ASYNC_POOL = "asyncThreadPoolTaskExecutor";
 
-    /**通告对象类型（USER:指定用户，ALL:全体用户）*/
-     String MSG_TYPE_USER  = "USER";
-     String MSG_TYPE_ALL  = "ALL";
+    /**
+     * 通告对象类型（USER:指定用户，ALL:全体用户）
+     */
+    String MSG_TYPE_USER = "USER";
+    String MSG_TYPE_ALL = "ALL";
 
-    /**发布状态（0未发布，1已发布，2已撤销）*/
-     String NO_SEND  = "0";
-     String HAS_SEND  = "1";
-     String HAS_REVOKE  = "2";
+    /**
+     * 发布状态（0未发布，1已发布，2已撤销）
+     */
+    String NO_SEND = "0";
+    String HAS_SEND = "1";
+    String HAS_REVOKE = "2";
 
-    /**阅读状态（0未读，1已读）*/
-     String HAS_READ_FLAG  = "1";
-     String NO_READ_FLAG  = "0";
+    /**
+     * 阅读状态（0未读，1已读）
+     */
+    String HAS_READ_FLAG = "1";
+    String NO_READ_FLAG = "0";
 
-    /**优先级（L低，M中，H高）*/
-     String PRIORITY_L  = "L";
-     String PRIORITY_M  = "M";
-     String PRIORITY_H  = "H";
+    /**
+     * 优先级（L低，M中，H高）
+     */
+    String PRIORITY_L = "L";
+    String PRIORITY_M = "M";
+    String PRIORITY_H = "H";
 
     /**
      * 短信模板方式  0 .登录模板、1.注册模板、2.忘记密码模板
      */
-     String SMS_TPL_TYPE_0  = "0";
-     String SMS_TPL_TYPE_1  = "1";
-     String SMS_TPL_TYPE_2  = "2";
+    String SMS_TPL_TYPE_0 = "0";
+    String SMS_TPL_TYPE_1 = "1";
+    String SMS_TPL_TYPE_2 = "2";
 }
