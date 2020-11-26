@@ -44,6 +44,11 @@ public interface WebsocketConstant {
     String CMD_USER = "user";
 
     /**
+     * 消息类型 revoke 撤销
+     */
+    String CMD_REVOKE = "revoke";
+
+    /**
      * 消息类型 topic 系统通知
      */
     String CMD_TOPIC = "topic";

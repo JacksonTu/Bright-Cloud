@@ -18,5 +18,5 @@ echo 'create images'
 docker build -t bright-server-msg .
 #运行容器
 echo 'run container'
-docker run -it -d --name bright-server-msg -p8003:8003 -v /home/output:/output bright-server-msg
+docker run -it -d --name bright-server-msg -p8004:8004 -v /home/output:/output bright-server-msg
 echo 'end docker'

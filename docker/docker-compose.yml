@@ -165,12 +165,12 @@ networks:
 
 
 # 创建并启动
-# COMPOSE_PROJECT_NAME=bright-service docker-compose up -d
+# docker-compose -p bright-service up -d
 # 启动
-# COMPOSE_PROJECT_NAME=bright-service docker-compose start
+# docker-compose -p bright-service start
 # 停止
-# COMPOSE_PROJECT_NAME=bright-service docker-compose stop
+# docker-compose -p bright-service stop
 # 删除
-#COMPOSE_PROJECT_NAME=bright-service docker-compose rm
+# docker-compose -p bright-service rm
 # 查看日志
-# COMPOSE_PROJECT_NAME=bright-service docker-compose logs
+# docker-compose -p bright-service logs

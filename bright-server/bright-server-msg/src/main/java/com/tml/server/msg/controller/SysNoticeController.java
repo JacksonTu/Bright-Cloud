@@ -1,6 +1,7 @@
 package com.tml.server.msg.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.tml.common.core.entity.constant.BrightConstant;
 import com.tml.common.core.entity.constant.WebsocketConstant;
@@ -81,6 +82,11 @@ public class SysNoticeController {
         try {
             String[] idArray = ids.split(StringConstant.COMMA);
             this.sysNoticeService.deleteSysNotice(idArray);
+            for(String noticeId:idArray){
+                LambdaQueryWrapper<SysNoticeSend> queryWrapper=new LambdaQueryWrapper();
+                queryWrapper.eq(StringUtils.isAllBlank(noticeId),SysNoticeSend::getNoticeId,noticeId);
+                this.sysNoticeSendService.remove(queryWrapper);
+            }
         } catch (Exception e) {
             String message = "删除失败";
             log.error(message, e);
@@ -173,6 +179,9 @@ public class SysNoticeController {
                 boolean flag=this.sysNoticeService.updateById(notice);
                 if(flag) {
                     message="成功";
+                    JSONObject obj = new JSONObject();
+                    obj.put(WebsocketConstant.MSG_CMD, WebsocketConstant.CMD_REVOKE);
+                    webSocket.sendAllMessage(obj.toJSONString());
                 }
             }
             return new CommonResult().data(message);
