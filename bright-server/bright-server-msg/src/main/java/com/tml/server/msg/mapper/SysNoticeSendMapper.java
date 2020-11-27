@@ -25,6 +25,6 @@ public interface SysNoticeSendMapper extends BaseMapper<SysNoticeSend> {
      * @param sysNotice
      * @return
      */
-    IPage<SysNoticeSend> pageMyNoticeSend(Page<SysNoticeSend> page, @Param("sysNotice") SysNotice sysNotice);
+    IPage<SysNotice> pageMyNoticeSend(Page<SysNotice> page, @Param("sysNotice") SysNotice sysNotice);
 
 }

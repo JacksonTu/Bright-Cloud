@@ -76,8 +76,8 @@ public class SysNoticeSendServiceImpl extends ServiceImpl<SysNoticeSendMapper, S
     }
 
     @Override
-    public IPage<SysNoticeSend> pageMyNoticeSend(QueryRequest request, SysNotice sysNotice) {
-        Page<SysNoticeSend> page = new Page<>(request.getPageNum(), request.getPageSize());
+    public IPage<SysNotice> pageMyNoticeSend(QueryRequest request, SysNotice sysNotice) {
+        Page<SysNotice> page = new Page<>(request.getPageNum(), request.getPageSize());
         return this.baseMapper.pageMyNoticeSend(page,sysNotice);
     }
 }

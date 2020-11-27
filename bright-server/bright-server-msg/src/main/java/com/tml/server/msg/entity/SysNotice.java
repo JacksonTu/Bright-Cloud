@@ -157,6 +157,12 @@ public class SysNotice {
     private String delFlag;
 
     /**
+     * 通知ID
+     */
+    @TableField(exist = false)
+    private Long noticeId;
+
+    /**
      * 用户ID
      */
     @TableField(exist = false)

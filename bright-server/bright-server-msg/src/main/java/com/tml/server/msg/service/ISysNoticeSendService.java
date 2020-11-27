@@ -68,10 +68,10 @@ public interface ISysNoticeSendService extends IService<SysNoticeSend> {
      * 我的消息查询（分页）
      *
      * @param request QueryRequest
-     * @param SysNotice sysNotice
-     * @return IPage<SysNoticeSend>
+     * @param sysNotice SysNotice
+     * @return IPage<SysNotice>
      */
-    IPage<SysNoticeSend> pageMyNoticeSend(QueryRequest request, SysNotice sysNotice);
+    IPage<SysNotice> pageMyNoticeSend(QueryRequest request, SysNotice sysNotice);
 
 
 }
