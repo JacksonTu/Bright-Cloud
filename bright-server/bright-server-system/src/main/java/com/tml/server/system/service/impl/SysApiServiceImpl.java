@@ -152,7 +152,7 @@ public class SysApiServiceImpl extends ServiceImpl<SysApiMapper, SysApi> impleme
             ApiTree tree = new ApiTree();
             tree.setId(api.getApiId().toString());
             tree.setParentId(api.getServiceId());
-            tree.setLabel(api.getApiName());
+            tree.setLabel(api.getPath()+"-"+api.getApiName());
             tree.setPath(api.getPath());
             tree.setServiceId(api.getServiceId());
             tree.setRequestMethod(api.getRequestMethod());

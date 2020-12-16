@@ -6,9 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -34,12 +33,38 @@ public class TestController {
         boolean res = lock.tryLock(100, 10, TimeUnit.SECONDS);
         if (res) {
             try {
-                return new CommonResult().data("加锁");
+                return new CommonResult().data("lock");
             } finally {
                 lock.unlock();
             }
         }
-        return new CommonResult().message("加锁失败");
+        return new CommonResult().message("lock error");
+    }
+
+    /**
+     * 限流测试
+     * @param id
+     * @param msg
+     * @return
+     */
+    @GetMapping("getRouteLimitRule/{id}/{msg}")
+    public CommonResult getRouteLimitRule(@PathVariable("id") String id, @PathVariable("msg")String msg){
+        log.info("getRouteLimitRule id: {}",id);
+        log.info("getRouteLimitRule msg: {}",msg);
+        return new CommonResult().data("true");
+    }
+
+    /**
+     * 限流测试
+     * @param id
+     * @param msg
+     * @return
+     */
+    @GetMapping("getRouteLimitRule2")
+    public CommonResult getRouteLimitRule2(@RequestParam("id") String id, @RequestParam("msg")String msg){
+        log.info("getRouteLimitRule id: {}",id);
+        log.info("getRouteLimitRule msg: {}",msg);
+        return new CommonResult().data("true");
     }
 
 }

@@ -57,6 +57,7 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         try {
+            URI requestUrl=getGatewayRequestUrl(exchange);
             URI originUri = getGatewayOriginalRequestUrl(exchange);
             if (originUri != null) {
                 String requestIp = BrightUtil.getServerHttpRequestIpAddress(request);
@@ -69,7 +70,7 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
                     blockLists = resultBody.getData();
                 }
 
-                checkBlockList(forbid, blockLists, originUri, requestMethod);
+                checkBlockList(forbid, blockLists, requestUrl, requestMethod);
 
                 log.info("BlockList verification completed - {}", stopwatch.stop());
                 if (forbid.get()) {
@@ -91,19 +92,20 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         try {
+            URI requestUrl=getGatewayRequestUrl(exchange);
             URI originUri = getGatewayOriginalRequestUrl(exchange);
             if (originUri != null) {
                 String requestIp = BrightUtil.getServerHttpRequestIpAddress(request);
                 String requestMethod = request.getMethodValue();
+                String path=requestUrl.getPath();
                 AtomicBoolean limit = new AtomicBoolean(false);
-                System.out.println("originUri.getPath(): "+originUri.getPath());
 
                 GatewayRouteLimitRule routeLimitRule = null;
 
-                ResultBody<GatewayRouteLimitRule> resultBody = remoteGatewayFeignService.getGatewayRouteLimitRule(originUri.getPath(), METHOD_ALL);
+                ResultBody<GatewayRouteLimitRule> resultBody = remoteGatewayFeignService.getGatewayRouteLimitRule(path, METHOD_ALL);
 
                 if (resultBody.getCode() == 200 && resultBody.getData() == null) {
-                    ResultBody<GatewayRouteLimitRule> resultBody2 = remoteGatewayFeignService.getGatewayRouteLimitRule(originUri.getPath(), requestMethod);
+                    ResultBody<GatewayRouteLimitRule> resultBody2 = remoteGatewayFeignService.getGatewayRouteLimitRule(path, requestMethod);
                     if (resultBody2.getCode() == 200) {
                         routeLimitRule = resultBody2.getData();
                     }
@@ -167,6 +169,7 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
             blockListLog.setRequestMethod(request.getMethodValue());
             blockListLog.setRequestUri(originUri.getPath());
             blockListLog.setCreateTimeFrom(DateUtil.format(LocalDateTime.now(), DatePattern.NORM_DATETIME_PATTERN));
+            blockListLog.setLocation(AddressUtil.getCityInfo(requestIp));
             remoteGatewayFeignService.saveGatewayBlockListLog(blockListLog);
             log.info("----- Store blockList logs -----");
         }
@@ -183,6 +186,7 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
             routeLimitRuleLog.setRequestMethod(request.getMethodValue());
             routeLimitRuleLog.setRequestUri(originUri.getPath());
             routeLimitRuleLog.setCreateTimeFrom(DateUtil.format(LocalDateTime.now(), DatePattern.NORM_DATETIME_PATTERN));
+            routeLimitRuleLog.setLocation(AddressUtil.getCityInfo(requestIp));
             remoteGatewayFeignService.saveGatewayRouteLimitRuleLog(routeLimitRuleLog);
             log.info("----- Store rate limit logs -----");
         }

@@ -34,5 +34,4 @@ public class ApiTree extends TreeNode<SysApi> {
      * 响应类型
      */
     private String contentType;
-
 }

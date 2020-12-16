@@ -2,6 +2,7 @@
 <!-- 多环境分级别异步文件日志输出配置 -->
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
+    <springProperty scope="context" name="server.port" source="server.port"/>
     <!-- 日志级别 -->
     <property name="log.level" value="INFO"/>
     <!--日志文件的存储地址，勿在 LogBack 的配置中使用相对路径-->
@@ -117,31 +118,46 @@
         <appender-ref ref="ERROR_FILE"/>
     </appender>
 
-    <!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
-    <!--        &lt;!&ndash;配置logStash 服务地址&ndash;&gt;-->
-    <!--        <destination>127.0.0.1:9500</destination>-->
-    <!--        &lt;!&ndash; 日志输出编码 &ndash;&gt;-->
-    <!--        <encoder charset="UTF-8"-->
-    <!--                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
-    <!--            <providers>-->
-    <!--                <timestamp>-->
-    <!--                    <timeZone>UTC</timeZone>-->
-    <!--                </timestamp>-->
-    <!--                <pattern>-->
-    <!--                    <pattern>-->
-    <!--                        {-->
-    <!--                        "serviceName": "${springAppName:-}",-->
-    <!--                        "logLevel": "%-5level",-->
-    <!--                        "pid": "${PID:- }",-->
-    <!--                        "thread": "%thread",-->
-    <!--                        "class": "%logger{50}",-->
-    <!--                        "msg": "%message"-->
-    <!--                        }-->
-    <!--                    </pattern>-->
-    <!--                </pattern>-->
-    <!--            </providers>-->
-    <!--        </encoder>-->
-    <!--    </appender>-->
+<!--    <appender name="LOGSTASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">-->
+<!--        &lt;!&ndash;配置logStash 服务地址&ndash;&gt;-->
+<!--        <destination>172.16.5.81:9500</destination>-->
+<!--        &lt;!&ndash; 日志输出编码 &ndash;&gt;-->
+<!--        <encoder charset="UTF-8"-->
+<!--                 class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+<!--            <providers>-->
+<!--                <timestamp>-->
+<!--                    <timeZone>UTC</timeZone>-->
+<!--                </timestamp>-->
+<!--                <pattern>-->
+<!--                    <pattern>-->
+<!--                        &lt;!&ndash;输出日志可自定义，可根据自己需要配置&ndash;&gt;-->
+<!--                        {-->
+<!--                        &lt;!&ndash;es索引名称 &ndash;&gt;-->
+<!--                        "indexname":"app_log",-->
+<!--                        &lt;!&ndash;应用名称 &ndash;&gt;-->
+<!--                        "appname":"${springAppName:-}",-->
+<!--                        &lt;!&ndash;服务器ip &ndash;&gt;-->
+<!--                        "host": "127.0.0.1",-->
+<!--                        &lt;!&ndash;应用端口 &ndash;&gt;-->
+<!--                        "port": "${server.port:-}",-->
+<!--                        &lt;!&ndash;打印时间 &ndash;&gt;-->
+<!--                        "timestamp": "%d{yyyy-MM-dd HH:mm:ss.SSS}",-->
+<!--                        &lt;!&ndash;线程名称 &ndash;&gt;-->
+<!--                        "thread": "%thread",-->
+<!--                        &lt;!&ndash;日志级别 &ndash;&gt;-->
+<!--                        "level": "%level",-->
+<!--                        &lt;!&ndash;日志名称 &ndash;&gt;-->
+<!--                        "logger_name": "%logger",-->
+<!--                        &lt;!&ndash;日志信息 &ndash;&gt;-->
+<!--                        "message": "%msg",-->
+<!--                        &lt;!&ndash;日志堆栈 &ndash;&gt;-->
+<!--                        "stack_trace": "%exception"-->
+<!--                        }-->
+<!--                    </pattern>-->
+<!--                </pattern>-->
+<!--            </providers>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <!--mybatis log-->
     <logger name="java.sql.Connection" level="DEBUG"/>
