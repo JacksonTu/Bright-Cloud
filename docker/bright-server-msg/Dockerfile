@@ -3,7 +3,7 @@ MAINTAINER JacksonTu 674717739@qq.com
 
 ENV PROJECT_HOME /home/project
 ENV OUTPUT_HOME /output
-ENV JAVA_OPTS="-server -Xms128m -Xmx128m -Xmn64m -Xss1m -XX:+UseG1GC"
+ENV JAVA_OPTS="-server -Xms128m -Xmx128m -Xmn64m -Xss1m"
 
 RUN mkdir -p "$PROJECT_HOME" && mkdir -p "$OUTPUT_HOME"
 
