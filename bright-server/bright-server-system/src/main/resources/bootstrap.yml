@@ -1,7 +1,7 @@
 server:
   port: 8000
-  # 开启优雅停机，默认immediate是立即关机。
-  shutdown: graceful
+  # 开启优雅停机，默认immediate是立即关机,延时停机是graceful。
+  shutdown: immediate
   http2:
     enabled: true
   tomcat:

@@ -96,6 +96,7 @@ public class RouteEnhanceServiceImpl implements RouteEnhanceService {
                 String requestIp = BrightUtil.getServerHttpRequestIpAddress(request);
                 String requestMethod = request.getMethodValue();
                 AtomicBoolean limit = new AtomicBoolean(false);
+                System.out.println("originUri.getPath(): "+originUri.getPath());
 
                 GatewayRouteLimitRule routeLimitRule = null;
 

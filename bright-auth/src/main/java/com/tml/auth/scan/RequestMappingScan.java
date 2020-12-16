@@ -10,7 +10,8 @@ import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.cloud.stream.messaging.Processor;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.MethodParameter;
@@ -47,20 +48,21 @@ import java.util.concurrent.*;
  */
 @Slf4j
 @Component
+@EnableBinding(Source.class)
 public class RequestMappingScan implements ApplicationListener<ApplicationReadyEvent> {
 
     private static final AntPathMatcher pathMatch = new AntPathMatcher();
     private final ExecutorService threadPool = new ThreadPoolExecutor(
             Runtime.getRuntime().availableProcessors(),
             new Double(Runtime.getRuntime().availableProcessors() / (1 - 0.9)).intValue(),
-            1l,
+            60L,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(Runtime.getRuntime().availableProcessors()),
             Executors.defaultThreadFactory(),
             new ThreadPoolExecutor.CallerRunsPolicy()
     );
     @Resource
-    private Processor pipe;
+    private Source source;
 
     @Override
     public void onApplicationEvent(ApplicationReadyEvent event) {
@@ -166,8 +168,7 @@ public class RequestMappingScan implements ApplicationListener<ApplicationReadyE
         resource.put("mapping", list);
         log.info("ApplicationReadyEvent:[{}]", serviceId);
         threadPool.submit(() -> {
-            pipe.output().send(MessageBuilder.withPayload(JacksonUtil.toJson(resource)).build());
-
+            source.output().send(MessageBuilder.withPayload(JacksonUtil.toJson(resource)).build());
         });
     }
 

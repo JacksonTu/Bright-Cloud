@@ -110,24 +110,9 @@ public class GatewayRouteLimitRuleServiceImpl extends ServiceImpl<GatewayRouteLi
             Object o = redisService.get(key);
             if (ObjectUtils.isNotEmpty(o)) {
                 return JacksonUtil.toObject(o.toString(), GatewayRouteLimitRule.class);
-            } else {
-                return null;
             }
-
-        } else {
-            LambdaQueryWrapper<GatewayRouteLimitRule> queryWrapper = new LambdaQueryWrapper<>();
-            queryWrapper.eq(StringUtils.isNoneBlank(uri), GatewayRouteLimitRule::getRequestUri, uri)
-                    .eq(StringUtils.isNoneBlank(method), GatewayRouteLimitRule::getRequestMethod, method)
-                    .eq(GatewayRouteLimitRule::getStatus, "1");
-            GatewayRouteLimitRule routeLimitRule = this.getOne(queryWrapper);
-            if (ObjectUtils.isNotEmpty(routeLimitRule)) {
-                redisService.set(key, JacksonUtil.toJson(routeLimitRule));
-            } else {
-                redisService.set(key, "");
-            }
-
-            return routeLimitRule;
         }
+        return null;
     }
 
     @Override
@@ -138,6 +123,10 @@ public class GatewayRouteLimitRuleServiceImpl extends ServiceImpl<GatewayRouteLi
         if (list != null && list.size() > 0) {
             list.stream().forEach(gatewayRouteLimitRule -> {
                 String key = CacheConstant.GATEWAY_ROUTE_LIMIT_RULE_CACHE + ":" + gatewayRouteLimitRule.getRequestUri() + ":" + gatewayRouteLimitRule.getRequestMethod();
+               //缓存限流规则之前，判断是否有缓存，若有先清除缓存，保证跟数据库中一致
+                if(redisService.hasKey(key)){
+                    redisService.del(key);
+                }
                 redisService.set(key, JacksonUtil.toJson(gatewayRouteLimitRule));
             });
         }

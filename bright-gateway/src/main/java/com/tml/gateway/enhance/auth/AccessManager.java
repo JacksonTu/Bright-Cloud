@@ -1,7 +1,8 @@
 package com.tml.gateway.enhance.auth;
 
-import cn.hutool.core.collection.ConcurrentHashSet;
+import com.tml.gateway.enhance.properties.BrightCloudGatewayProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.security.authorization.AuthorizationDecision;
 import org.springframework.security.authorization.ReactiveAuthorizationManager;
 import org.springframework.security.core.Authentication;
@@ -12,7 +13,7 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author JacksonTu
@@ -22,20 +23,13 @@ import java.util.Set;
  */
 @Slf4j
 @Component
+@EnableConfigurationProperties(BrightCloudGatewayProperties.class)
 public class AccessManager implements ReactiveAuthorizationManager<AuthorizationContext> {
     private static final AntPathMatcher antPathMatcher = new AntPathMatcher();
-    private final Set<String> permitAll = new ConcurrentHashSet<>();
+    private final BrightCloudGatewayProperties gatewayProperties;
 
-    public AccessManager() {
-        permitAll.add("/");
-        permitAll.add("/error");
-        permitAll.add("/favicon.ico");
-        permitAll.add("/actuator/**");
-        permitAll.add("/**/v2/api-docs/**");
-        permitAll.add("/**/v2/api-docs-ext/**");
-        permitAll.add("/doc.html");
-        permitAll.add("/auth/**");
-        permitAll.add("/task/**");
+    public AccessManager(BrightCloudGatewayProperties gatewayProperties) {
+        this.gatewayProperties = gatewayProperties;
     }
 
     /**
@@ -64,11 +58,21 @@ public class AccessManager implements ReactiveAuthorizationManager<Authorization
      * @return
      */
     private boolean permitAll(String requestPath) {
-        return permitAll.stream()
-                .filter(r -> antPathMatcher.match(r, requestPath)).findFirst().isPresent();
+        List<String> anonUris=gatewayProperties.getAnonUris();
+        if(anonUris!=null && anonUris.size()>0){
+            return anonUris.stream()
+                    .filter(r -> antPathMatcher.match(r, requestPath)).findFirst().isPresent();
+        }
+        return false;
     }
 
-    //权限校验
+    /**
+     * 权限校验
+     * @param exchange
+     * @param auth
+     * @param requestPath
+     * @return
+     */
     private boolean checkAuthorities(ServerWebExchange exchange, Authentication auth, String requestPath) {
         if (auth instanceof OAuth2Authentication) {
             OAuth2Authentication authentication = (OAuth2Authentication) auth;

@@ -34,7 +34,7 @@ public class ZookeeperLockTest {
 
         ExecutorService threadPool=
                 new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),
-                        new Double(Math.floor(Runtime.getRuntime().availableProcessors() / (1 - 0.9))).intValue(),
+                        (int) (Runtime.getRuntime().availableProcessors() / (1 - 0.9)),
                         60l,
                         TimeUnit.SECONDS,
                         new LinkedBlockingQueue<>(Runtime.getRuntime().availableProcessors()),
@@ -91,7 +91,7 @@ public class ZookeeperLockTest {
 
         ExecutorService threadPool=
                 new ThreadPoolExecutor(Runtime.getRuntime().availableProcessors(),
-                        new Double(Math.floor(Runtime.getRuntime().availableProcessors() / (1 - 0.9))).intValue(),
+                        (int) (Runtime.getRuntime().availableProcessors() / (1 - 0.9)),
                         60l,
                         TimeUnit.SECONDS,
                         new LinkedBlockingQueue<>(Runtime.getRuntime().availableProcessors()),

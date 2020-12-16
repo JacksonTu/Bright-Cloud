@@ -105,10 +105,22 @@ spring:
 bright:
   gateway:
     enhance: true
+    anon-uris:
+      - /
+      - /error
+      - /favicon.ico
+      - /actuator/**
+      - /**/v2/api-docs/**
+      - /**/v2/api-docs-ext/**
+      - /doc.html
+      - /auth/**
+      - /task/**
+      - /**/task/**
   doc:
     gateway:
       enable: true
       resources: "bright-server-system,bright-server-test,bright-auth,bright-server-generator,bright-server-job,bright-server-msg"
+      
 
 # feign配置
 feign:

@@ -26,7 +26,7 @@
         </dependency>
         <dependency>
             <groupId>com.tml</groupId>
-            <artifactId>bright-common-starter-redis</artifactId>
+            <artifactId>bright-common-starter-redisson</artifactId>
             <version>${bright-cloud.version}</version>
         </dependency>
         <dependency>

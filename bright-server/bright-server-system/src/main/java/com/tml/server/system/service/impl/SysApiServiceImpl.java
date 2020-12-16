@@ -96,6 +96,7 @@ public class SysApiServiceImpl extends ServiceImpl<SysApiMapper, SysApi> impleme
     }
 
 
+    @Override
     public Map<String,Object> treeServiceId(){
         Map<String, Object> result = new HashMap<>(2);
         try {

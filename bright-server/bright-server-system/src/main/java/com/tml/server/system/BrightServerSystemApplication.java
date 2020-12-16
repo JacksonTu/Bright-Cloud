@@ -6,6 +6,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Processor;
 
@@ -20,6 +21,7 @@ import org.springframework.cloud.stream.messaging.Processor;
 @EnableBrightCloudResourceServer
 @MapperScan("com.tml.server.system.mapper")
 @EnableBinding(Processor.class)
+@RefreshScope
 public class BrightServerSystemApplication {
 
     public static void main(String[] args) {

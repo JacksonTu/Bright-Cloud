@@ -1,7 +1,7 @@
 server:
   port: 8007
-  # 开启优雅停机，默认immediate是立即关机。
-  shutdown: graceful
+  # 开启优雅停机，默认immediate是立即关机,延时停机是graceful。
+  shutdown: immediate
   http2:
     enabled: true
   tomcat:
@@ -34,6 +34,8 @@ spring:
         server-addr: ${discovery.server-addr}
         namespace: ${config.namespace}
         group: ${config.group}
+  redisson:
+    file: classpath:redisson-single.yaml
 
 info:
   name: ${spring.application.name}

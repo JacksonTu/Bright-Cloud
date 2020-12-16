@@ -68,7 +68,7 @@ public class ResourceScanHandler {
 //            });
             });
 
-            redisService.set(key, list.size(), 180l);
+            redisService.set(key, list.size(), 180L);
         }
     }
 }

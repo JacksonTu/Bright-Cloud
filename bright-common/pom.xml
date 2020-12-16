@@ -18,6 +18,7 @@
     <modules>
         <module>bright-common-core</module>
         <module>bright-common-starter-redis</module>
+        <module>bright-common-starter-redisson</module>
         <module>bright-common-starter-datasource</module>
         <module>bright-common-starter-security</module>
         <module>bright-common-starter-web</module>

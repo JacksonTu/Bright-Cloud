@@ -57,7 +57,7 @@ public class RequestMappingScan implements ApplicationListener<ApplicationReadyE
     private final ExecutorService threadPool = new ThreadPoolExecutor(
             Runtime.getRuntime().availableProcessors(),
             new Double(Runtime.getRuntime().availableProcessors() / (1 - 0.9)).intValue(),
-            1l,
+            60L,
             TimeUnit.SECONDS,
             new LinkedBlockingQueue<>(Runtime.getRuntime().availableProcessors()),
             Executors.defaultThreadFactory(),

@@ -30,7 +30,7 @@ public class AsyncThreadPoolConfigure {
         // 设置核心线程数
         executor.setCorePoolSize(Runtime.getRuntime().availableProcessors());
         // 设置最大线程数
-        executor.setMaxPoolSize(new Double(Math.floor(Runtime.getRuntime().availableProcessors() / (1 - 0.9))).intValue());
+        executor.setMaxPoolSize((int) (Runtime.getRuntime().availableProcessors() / (1 - 0.9)));
         // 设置队列容量
         executor.setQueueCapacity(Runtime.getRuntime().availableProcessors());
         // 设置线程活跃时间（秒）

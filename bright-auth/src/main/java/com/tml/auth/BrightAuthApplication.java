@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.messaging.Processor;
 
 /**
  * @author JacksonTu
@@ -21,7 +20,7 @@ import org.springframework.cloud.stream.messaging.Processor;
 @EnableFeignClients
 @EnableCircuitBreaker
 @EnableBrightCloudResourceServer
-@EnableBinding(Processor.class)
+@RefreshScope
 public class BrightAuthApplication {
 
     public static void main(String[] args) {

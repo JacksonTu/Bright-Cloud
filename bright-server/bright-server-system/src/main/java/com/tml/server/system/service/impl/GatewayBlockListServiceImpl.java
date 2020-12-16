@@ -138,8 +138,12 @@ public class GatewayBlockListServiceImpl extends ServiceImpl<GatewayBlockListMap
         queryWrapper.eq(GatewayBlockList::getStatus, "1");
         List<GatewayBlockList> list = this.list(queryWrapper);
         if (list != null && list.size() > 0) {
+            String key = CacheConstant.GATEWAY_BLOCK_LIST_CACHE;
+            //缓存黑名单之前，判断是否有缓存，若有先清除缓存，保证跟数据库中一致
+            if(redisService.hasKey(key)){
+                redisService.del(key);
+            }
             list.stream().forEach(gatewayBlockList -> {
-                String key = CacheConstant.GATEWAY_BLOCK_LIST_CACHE;
                 redisService.sSet(key, JacksonUtil.toJson(gatewayBlockList));
             });
         }

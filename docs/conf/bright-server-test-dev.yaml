@@ -41,9 +41,6 @@ spring:
     stream:
       default-binder: rabbit
       bindings:
-        input:
-          destination: bright.cloud.api
-          group: resource
         output:
           destination: bright.cloud.api
 
@@ -160,7 +157,9 @@ bright:
   cloud:
     security:
       enable: true
+      only-fetch-by-gateway: false
       anon-uris:
+        - /favicon.ico
         - /actuator/**
         - /v2/api-docs
         - /v2/api-docs-ext
