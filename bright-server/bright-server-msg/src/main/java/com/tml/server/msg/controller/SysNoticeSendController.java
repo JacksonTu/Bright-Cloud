@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tml.common.core.entity.constant.BrightConstant;
+import com.tml.common.core.entity.constant.WebsocketConstant;
 import com.tml.server.msg.entity.SysNotice;
 import com.tml.server.msg.entity.SysNoticeSend;
 import com.tml.server.msg.service.ISysNoticeSendService;
@@ -14,6 +15,7 @@ import com.tml.common.core.entity.QueryRequest;
 import com.tml.common.core.exception.BrightException;
 import com.tml.common.core.utils.BrightUtil;
 import com.tml.common.core.entity.constant.StringConstant;
+import com.tml.server.msg.websocket.CommonWebSocket;
 import lombok.extern.slf4j.Slf4j;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,6 +41,8 @@ import java.util.Map;
 public class SysNoticeSendController {
 
     private final ISysNoticeSendService sysNoticeSendService;
+
+    private final CommonWebSocket webSocket;
 
     @GetMapping
     @PreAuthorize("hasAuthority('notice:send:list')")
@@ -110,6 +114,11 @@ public class SysNoticeSendController {
             noticeSend.setUpdateUser(BrightUtil.getCurrentUsername());
             noticeSend.setUpdateTime(new Date());
             this.sysNoticeSendService.update(noticeSend, updateWrapper);
+
+            JSONObject obj = new JSONObject();
+            obj.put(WebsocketConstant.MSG_CMD, WebsocketConstant.CMD_REVOKE);
+            webSocket.sendAllMessage(obj.toJSONString());
+
             return new CommonResult().data(true);
         } catch (Exception e) {
             String message = "更新阅读状态失败";
@@ -148,6 +157,11 @@ public class SysNoticeSendController {
 
             SysNoticeSend noticeSend = new SysNoticeSend();
             this.sysNoticeSendService.update(noticeSend, updateWrapper);
+
+            JSONObject obj = new JSONObject();
+            obj.put(WebsocketConstant.MSG_CMD, WebsocketConstant.CMD_REVOKE);
+            webSocket.sendAllMessage(obj.toJSONString());
+
             return new CommonResult().data(true);
         } catch (Exception e) {
             String message = "全部已读失败";

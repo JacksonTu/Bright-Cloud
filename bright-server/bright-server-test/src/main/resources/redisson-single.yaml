@@ -18,7 +18,7 @@ singleServerConfig:
   #  # 节点地址
   address: redis://${spring.redis.host}:${spring.redis.host}
   # 密码
-  password:
+  password: ${spring.redis.password}
   # 数据库编号
   database: 1
   # 发布和订阅连接的最小空闲连接数
