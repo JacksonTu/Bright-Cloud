@@ -35,11 +35,6 @@
         </dependency>
         <dependency>
             <groupId>com.tml</groupId>
-            <artifactId>bright-common-starter-doc-gateway</artifactId>
-            <version>${bright-cloud.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.tml</groupId>
             <artifactId>bright-common-starter-redis</artifactId>
             <version>${bright-cloud.version}</version>
         </dependency>
@@ -47,6 +42,12 @@
             <groupId>com.tml</groupId>
             <artifactId>bright-api-system</artifactId>
             <version>${bright-cloud.version}</version>
+        </dependency>
+        <!-- knife4j -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-spring-boot-starter</artifactId>
+            <version>${knife4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>

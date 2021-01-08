@@ -200,9 +200,10 @@ bright:
       anon-uris:
         - /favicon.ico
         - /actuator/**
+        - /v2/api-docs/**
+        - /v2/api-docs-ext/**
+        - /webjars/**
         - /captcha
         - /social/**
-        - /v2/api-docs
-        - /v2/api-docs-ext
         - /login
         - /resource/**

@@ -3,14 +3,12 @@ package com.tml.gateway.enhance.service.impl;
 import com.google.common.collect.Lists;
 import com.tml.common.core.entity.constant.CacheConstant;
 import com.tml.common.core.utils.JacksonUtil;
-import com.tml.common.starter.redis.service.RedisService;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionRepository;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
 import javax.annotation.Resource;
 import java.util.List;
 
@@ -22,9 +20,6 @@ import java.util.List;
  */
 @Component
 public class RedisRouteDefinitionRepository implements RouteDefinitionRepository {
-
-    @Resource
-    private RedisService redisService;
 
     @Resource
     private RedisTemplate redisTemplate;

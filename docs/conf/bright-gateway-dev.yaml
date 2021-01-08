@@ -12,6 +12,11 @@ spring:
           service-base-url: http://127.0.0.1:${server.port}
   cloud:
     gateway:
+      discovery:
+        locator:
+          #表示gateway开启服务注册和发现功能
+          enabled: true
+          lowerCaseServiceId: true
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -112,6 +117,8 @@ bright:
       - /actuator/**
       - /**/v2/api-docs/**
       - /**/v2/api-docs-ext/**
+      - /**/webjars/**
+      - /swagger-resources/**
       - /doc.html
       - /auth/**
       - /task/**

@@ -1,6 +1,7 @@
-package com.tml.common.starter.doc.gateway.properties;
+package com.tml.gateway.doc.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 /**
  * @author JacksonTu
@@ -8,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @description
  * @since 2020-08-10 20:30
  */
+@Component
 @ConfigurationProperties(prefix = "bright.doc.gateway")
 public class BrightDocGatewayProperties {
 
@@ -17,7 +19,7 @@ public class BrightDocGatewayProperties {
     private Boolean enable;
 
     /**
-     * 需要暴露doc的服务列表，多个值时用逗号分隔
+     * 需要暴露doc的真实服务列表，多个值时用逗号分隔
      * 如 Bright-Auth,Bright-Server-System
      */
     private String resources;

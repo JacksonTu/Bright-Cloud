@@ -22,7 +22,6 @@
         <module>bright-common-starter-datasource</module>
         <module>bright-common-starter-security</module>
         <module>bright-common-starter-web</module>
-        <module>bright-common-starter-doc-gateway</module>
         <module>bright-common-starter-doc</module>
     </modules>
 

@@ -1,12 +1,10 @@
 package com.tml.common.starter.doc.configure;
 
-import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import com.google.common.collect.Lists;
 import com.tml.common.starter.doc.properties.BrightDocProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.core.annotation.Order;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
@@ -18,7 +16,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 import java.util.List;
 
 /**
@@ -27,9 +24,7 @@ import java.util.List;
  * @description
  * @since 2020-08-10 20:30
  */
-@Configuration
 @EnableSwagger2
-@EnableKnife4j
 @Import(BeanValidatorPluginsConfiguration.class)
 @EnableConfigurationProperties(BrightDocProperties.class)
 @ConditionalOnProperty(value = "bright.doc.enable", havingValue = "true", matchIfMissing = true)
@@ -42,7 +37,7 @@ public class BrightDocAutoConfigure {
     }
 
     @Bean
-    @Order(-1)
+    @Order(1)
     public Docket groupRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(groupApiInfo())

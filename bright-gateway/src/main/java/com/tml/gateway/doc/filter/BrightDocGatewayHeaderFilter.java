@@ -1,8 +1,9 @@
-package com.tml.common.starter.doc.gateway.filter;
+package com.tml.gateway.doc.filter;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ServerWebExchange;
 
@@ -12,7 +13,7 @@ import org.springframework.web.server.ServerWebExchange;
  * @description
  * @since 2020-08-10 20:30
  */
-@SuppressWarnings("all")
+@Component
 public class BrightDocGatewayHeaderFilter extends AbstractGatewayFilterFactory {
 
     private static final String HEADER_NAME = "X-Forwarded-Prefix";
