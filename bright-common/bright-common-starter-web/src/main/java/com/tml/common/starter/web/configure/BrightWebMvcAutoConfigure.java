@@ -57,7 +57,7 @@ public class BrightWebMvcAutoConfigure implements WebMvcConfigurer {
     }
 
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
         MappingJackson2HttpMessageConverter jackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
 
         ObjectMapper objectMapper = jackson2HttpMessageConverter.getObjectMapper();
@@ -110,6 +110,6 @@ public class BrightWebMvcAutoConfigure implements WebMvcConfigurer {
 
         jackson2HttpMessageConverter.setObjectMapper(objectMapper);
 
-        converters.add(jackson2HttpMessageConverter);
+        converters.add(0,jackson2HttpMessageConverter);
     }
 }
