@@ -57,7 +57,7 @@ Gitee  | [https://gitee.com/tumao2/Bright-Cloud](https://gitee.com/tumao2/Bright
 
 ### 演示地址
 
-演示地址：[http://106.13.130.94](http://106.13.130.94)
+演示地址：[]()
 
 演示环境账号密码：
 
