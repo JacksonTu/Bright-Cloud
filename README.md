@@ -109,6 +109,7 @@ Skywalking|11800、12800、9080|Skywalking APM
 │  ├─bright-common-starter-datasource           ------ 系统数据库自动装配starter
 │  ├─bright-common-starter-log                  ------ 系统日志自动装配starter
 │  ├─bright-common-starter-redis                ------ 系统Reids自动装配starter
+│  ├─bright-common-starter-redisson             ------ 系统Reidsson自动装配starter
 │  ├─bright-common-starter-security             ------ 系统安全自动装配starter
 │  ├─bright-common-starter-doc                  ------ 系统文档自动装配starter
 │  ├─bright-common-starter-web                  ------ 系统网络自动装配starter
@@ -134,7 +135,6 @@ Skywalking|11800、12800、9080|Skywalking APM
 ```
 JDK1.8默认的是UseParallelGC,ParallelGC 默认的是 **Parallel Scavenge（新生代）+ Parallel Old（老年代）**
 -Xms256m -Xmx256m -Xmn128m -Xss1m -XX:+PrintGCDetails
--Xms256m -Xmx256m -Xmn128m -Xss1m -XX:+UseConcMarkSweepGC
 ```
 ### 打包命令
 ```
