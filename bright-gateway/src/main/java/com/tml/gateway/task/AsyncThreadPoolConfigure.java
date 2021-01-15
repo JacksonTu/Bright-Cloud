@@ -22,7 +22,7 @@ public class AsyncThreadPoolConfigure {
 
     /**
      * 对于CPU密集型任务，最大线程数是CPU线程数+1。对于IO密集型任务，尽量多配点，可以是CPU线程数*2，或者CPU线程数/(1-阻塞系数)。
-     * maxPoolSize=new Double(Math.floor(Runtime.getRuntime().availableProcessors()/(1-0.9))).intValue()
+     * maxPoolSize=(int) (Runtime.getRuntime().availableProcessors() / (1 - 0.9))
      */
     @Bean(name = BrightConstant.ASYNC_POOL)
     public ThreadPoolTaskExecutor asyncThreadPoolTaskExecutor() {

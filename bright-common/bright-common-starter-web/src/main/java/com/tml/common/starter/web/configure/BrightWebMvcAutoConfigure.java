@@ -42,6 +42,7 @@ import java.util.List;
  * @Date 2020/4/1 17:35
  */
 @Slf4j
+
 public class BrightWebMvcAutoConfigure implements WebMvcConfigurer {
     /**
      * 资源处理器
